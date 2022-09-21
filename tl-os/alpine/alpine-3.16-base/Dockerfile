@@ -1,8 +1,7 @@
 FROM alpine:3.16
 
-ENV LANG zh_CN.UTF-8
-ENV LANGUAGE zh_CN:zh  
-ENV LC_ALL zh_CN.UTF-8
+# Default to UTF-8 file.encoding
+ENV LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh' LC_ALL='zh_CN.UTF-8'
 
 RUN cd / ; \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories; \
