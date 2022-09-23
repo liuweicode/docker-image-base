@@ -2,8 +2,8 @@
 
 set -eux
 
-BUILD_NAME='tl-alpine'
-BUILD_VERSION='alpine-3.16-base'
+BUILD_NAME='alpine'
+BUILD_VERSION='alpine-3.16-cn-base'
 
 docker build --no-cache -t $BUILD_NAME:$BUILD_VERSION -f Dockerfile .
 
@@ -13,7 +13,7 @@ IMAGETAG=$(docker images | grep $BUILD_VERSION | head -n 1 | awk '{print $3}')
 
 echo $IMAGETAG
 
-docker tag $IMAGETAG toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME:$BUILD_VERSION
+docker tag $IMAGETAG suxz/$BUILD_NAME:$BUILD_VERSION
 
-docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME:$BUILD_VERSION
+docker push suxz/$BUILD_NAME:$BUILD_VERSION
 
