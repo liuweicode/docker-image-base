@@ -2,14 +2,17 @@
 
 set -eux
 
-docker build --no-cache -t tl-java:openjdk-8-jre-slim-bullseye -f Dockerfile .
+BUILD_NAME='openjdk'
+BUILD_VERSION='openjdk-8-jre-slim-bullseye-cn-base'
 
-docker images | grep 'openjdk-8-jre-slim-bullseye'
+docker build --no-cache -t $BUILD_NAME:$BUILD_VERSION -f Dockerfile .
 
-IMAGETAG=$(docker images | grep 'openjdk-8-jre-slim-bullseye' | head -n 1 | awk '{print $3}')
+docker images | grep $BUILD_VERSION
+
+IMAGETAG=$(docker images | grep $BUILD_VERSION | head -n 1 | awk '{print $3}')
 
 echo $IMAGETAG
 
-docker tag $IMAGETAG toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-java:openjdk-8-jre-slim-bullseye
+docker tag $IMAGETAG suxz/$BUILD_NAME:$BUILD_VERSION
 
-docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-java:openjdk-8-jre-slim-bullseye
+docker push suxz/$BUILD_NAME:$BUILD_VERSION
